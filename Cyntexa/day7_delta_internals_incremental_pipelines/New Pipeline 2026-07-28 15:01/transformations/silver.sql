@@ -1,5 +1,5 @@
 create streaming table dev.silver.sales_cleaned_st as 
-select distinct * except(`_rescued_data`, `file_path`, ingestion_date) from stream(dev.bronze.sales_st) where order_id is not null;
+select distinct * except(`_rescued_data`, `file_path`, ingestion_date) from stream (dev.bronze.sales_st) where order_id is not null;
 
 
 
