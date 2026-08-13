@@ -1,0 +1,480 @@
+{
+  "datasets": [
+    {
+      "name": "3a1f99e2",
+      "displayName": "sales_transactions",
+      "config": {
+        "version": "1.1",
+        "source": "samples.bakehouse.sales_transactions",
+        "dimensions": [
+          {
+            "expr": "source.*"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          },
+          {
+            "name": "total amount",
+            "expr": "SUM(totalPrice)",
+            "displayName": "total amount"
+          }
+        ]
+      }
+    },
+    {
+      "name": "2d8f9707",
+      "displayName": "sales_customers",
+      "queryLines": [
+        "select * from samples.bakehouse.sales_customers"
+      ]
+    },
+    {
+      "name": "fe5cccfe",
+      "displayName": "sales_franchises",
+      "config": {
+        "version": "1.1",
+        "source": "samples.bakehouse.sales_franchises",
+        "dimensions": [
+          {
+            "expr": "source.*"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    },
+    {
+      "name": "35edf608",
+      "displayName": "sales_suppliers",
+      "config": {
+        "version": "1.1",
+        "source": "samples.bakehouse.sales_suppliers",
+        "dimensions": [
+          {
+            "expr": "source.*"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    },
+    {
+      "name": "35c63250",
+      "displayName": "sales_customers_total_price",
+      "queryLines": [
+        "select c.customerID, c.city, c.state, c.country, t.totalPrice\n",
+        "from samples.bakehouse.sales_customers c\n",
+        "join samples.bakehouse.sales_transactions t\n",
+        "  on c.customerID = t.customerID"
+      ]
+    }
+  ],
+  "relationshipGraphs": [
+    {
+      "sources": [
+        {
+          "name": "sales_transactions",
+          "datasetName": "3a1f99e2"
+        },
+        {
+          "name": "sales_customers",
+          "datasetName": "2d8f9707"
+        },
+        {
+          "name": "sales_franchises",
+          "datasetName": "fe5cccfe"
+        },
+        {
+          "name": "sales_suppliers",
+          "datasetName": "35edf608"
+        },
+        {
+          "name": "Untitled_dataset",
+          "datasetName": "35c63250"
+        }
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "93224f21",
+      "displayName": "Overview",
+      "layout": [
+        {
+          "widget": {
+            "name": "b6579a99",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"font-size:36px;line-height:1.5\">Cyntexa Bakehouse Dashboard</span>![](data:image/png;base64,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)"
+              ]
+            },
+            "specExtensions": {
+              "widgetBackgroundColor": {
+                "light": "#F0F0F0"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "c",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "fields": [
+                    {
+                      "name": "count(sales_customers__*)",
+                      "expression": "COUNT(STRUCT(`sales_customers`.`*`))"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Customers Count"
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "count(sales_customers__*)"
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 3,
+            "width": 4,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "8e904b15",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "fields": [
+                    {
+                      "name": "sum(sales_transactions__totalPrice)",
+                      "expression": "SUM(`sales_transactions`.`totalPrice`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Total Price"
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(sales_transactions__totalPrice)",
+                  "format": {
+                    "type": "number-currency",
+                    "currencyCode": "INR",
+                    "abbreviation": "compact",
+                    "decimalPlaces": {
+                      "type": "max",
+                      "places": 2
+                    }
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 3,
+            "width": 4,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "e62d4413",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "fields": [
+                    {
+                      "name": "sum(sales_transactions__quantity)",
+                      "expression": "SUM(`sales_transactions`.`quantity`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Total Quantity"
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(sales_transactions__quantity)"
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 8,
+            "y": 3,
+            "width": 4,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "e9012672",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "fields": [
+                    {
+                      "name": "Untitled_dataset__country",
+                      "expression": "`Untitled_dataset`.`country`"
+                    },
+                    {
+                      "name": "sum(Untitled_dataset__totalPrice)",
+                      "expression": "SUM(`Untitled_dataset`.`totalPrice`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "Untitled_dataset__country",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(Untitled_dataset__totalPrice)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "ef39c971",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "fields": [
+                    {
+                      "name": "sales_transactions__product",
+                      "expression": "`sales_transactions`.`product`"
+                    },
+                    {
+                      "name": "sum(sales_transactions__totalPrice)",
+                      "expression": "SUM(`sales_transactions`.`totalPrice`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "showTitle": true,
+                "title": "Top Selling Products"
+              },
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "sales_transactions__product",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(sales_transactions__totalPrice)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 6,
+            "width": 6,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "canvasBackgroundColor": {
+        "light": "#F0F0F0",
+        "dark": "#121317"
+      },
+      "widgetBackgroundColor": {
+        "light": "#F0F0F0",
+        "dark": "#121317"
+      },
+      "widgetBorderColor": {
+        "light": "#171717",
+        "dark": "#9D9DA0"
+      },
+      "fontColor": {
+        "light": "#404040",
+        "dark": "#F7F5F2"
+      },
+      "selectionColor": {
+        "light": "#0061FE",
+        "dark": "#5A9FFF"
+      },
+      "visualizationColors": [
+        "#377EB8",
+        "#4DAF4A",
+        "#984EA3",
+        "#FF7F00",
+        "#FFFF33",
+        "#A65628",
+        "#F781BF"
+      ],
+      "widgetHeaderAlignment": "LEFT",
+      "fontFamily": "Roboto Mono",
+      "widgetPadding": 16,
+      "widgetMargin": 0,
+      "widgetCornerRadius": 0,
+      "widgetShadow": 0,
+      "continuousGradient": {
+        "lightMode": {
+          "fromCategoricalIndex": 0
+        },
+        "darkMode": {
+          "fromCategoricalIndex": 0
+        }
+      },
+      "fontSettings": {
+        "base": {
+          "fontFamily": "Roboto Mono",
+          "fontColor": {
+            "light": "#404040",
+            "dark": "#F7F5F2"
+          },
+          "fontSize": 13,
+          "fontWeight": 400
+        },
+        "widgetTitle": {
+          "fontSize": 15,
+          "fontWeight": 500
+        },
+        "widgetDescription": {
+          "fontSize": 13,
+          "fontWeight": 400
+        },
+        "fieldTitle": {
+          "textCase": "TEXT_CASE_UPPERCASE",
+          "fontColor": {
+            "light": "#535353",
+            "dark": "#DEDDDA"
+          },
+          "fontSize": 12,
+          "fontWeight": 400
+        },
+        "fieldValue": {
+          "fontColor": {
+            "light": "#535353",
+            "dark": "#DEDDDA"
+          },
+          "fontSize": 12,
+          "fontWeight": 400
+        }
+      },
+      "gridLineColor": {
+        "light": "#D1D1D1",
+        "dark": "#3B3B3E"
+      },
+      "axisLineColor": {
+        "light": "#C1C1C1",
+        "dark": "#4F5052"
+      }
+    },
+    "applyModeEnabled": false
+  }
+}
